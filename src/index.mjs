@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 server.use(cors());
 server.use(helmet());
 server.use(morgan("combined")); 
+server.use(express.json());
 server.use(agendamentoRoutes);
 
 server.use("*", (request, response) => {

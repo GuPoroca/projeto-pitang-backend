@@ -1,15 +1,18 @@
 import { Router } from "express";
+import AgendamentoController from "../controllers/agendamento.controller.mjs"
 
 const routes = Router();
 
+const agendamentoController = new AgendamentoController();
+
   //pega todos agendamentos
 routes.get("/api/agendamentos", (request, response) =>
-    response.send("Pegar agendamentos")
+    agendamentoController.index(request, response)
   );
   
   //cria um agendamento
-routes.post("/api/agendamento", (request, response) =>
-    response.send("Criar agendamento")
+routes.post("/api/agendamentos", (request, response) =>
+    agendamentoController.createAgendamento(request, response)
   );
 
 export default routes;
