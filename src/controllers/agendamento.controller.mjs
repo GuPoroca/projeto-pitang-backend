@@ -1,5 +1,6 @@
 import z from "zod";
 import { subDays } from "date-fns";
+import prismaClient from "../utils/prismaClient.mjs";
 
 const now = new Date();
 
@@ -9,11 +10,9 @@ const agendamentoSchema = z.object({
   dataAgendamento: z.date().min(now),
 });
 
-let agendamentos = [];
-
 export default class AgendamentoController {
   async index(request, response) {
-    console.log("opa");
+    const agendamentos = await prismaClient.agendamento.findMany();
     response.send({
       page: 1,
       pageSize: 20,
@@ -22,7 +21,7 @@ export default class AgendamentoController {
     });
   }
 
-   async createAgendamento(request, response) {
+  async createAgendamento(request, response) {
     const agendamento = request.body;
     agendamento.dataNascimento = new Date(agendamento.dataNascimento);
     agendamento.dataAgendamento = new Date(agendamento.dataAgendamento);
@@ -33,7 +32,7 @@ export default class AgendamentoController {
       return response.status(400).send(error);
     }
 
-    agendamentos.push(data);
+    await prismaClient.agendamento.create({ data: {...data}});
 
     response.send({ message: "agendamento armazenado" });
   }
