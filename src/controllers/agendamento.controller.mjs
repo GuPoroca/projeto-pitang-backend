@@ -44,7 +44,6 @@ export default class AgendamentoController {
     }
 
     await prismaClient.agendamento.create({ data: {...data}});
-
-    response.send({ message: "agendamento armazenado" });
+    response.status(201).send({ message: "agendamento armazenado" });
   }
 }
