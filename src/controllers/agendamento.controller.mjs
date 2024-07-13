@@ -28,6 +28,17 @@ export default class AgendamentoController {
     console.log(agendamento);
     const { success, data, error } = agendamentoSchema.safeParse(agendamento);
     //checar se tem 2, se tiver 2, success = false.
+
+    const count = await prismaClient.agendamento.count({
+      where: {
+        dataAgendamento: agendamento.dataAgendamento
+      }
+    });
+  
+    if (count >= 2) {
+      return response.status(400).send({ error: "Horário ocupado" });
+    }
+
     if (!success) {
       return response.status(400).send(error);
     }
