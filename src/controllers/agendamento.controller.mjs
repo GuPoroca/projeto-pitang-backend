@@ -31,10 +31,10 @@ export default class AgendamentoController {
 
     const count = await prismaClient.agendamento.count({
       where: {
-        dataAgendamento: agendamento.dataAgendamento
-      }
+        dataAgendamento: agendamento.dataAgendamento,
+      },
     });
-  
+
     if (count >= 2) {
       return response.status(400).send({ error: "Horário ocupado" });
     }
@@ -43,7 +43,7 @@ export default class AgendamentoController {
       return response.status(400).send(error);
     }
 
-    await prismaClient.agendamento.create({ data: {...data}});
+    await prismaClient.agendamento.create({ data: { ...data } });
     response.status(201).send({ message: "agendamento armazenado" });
   }
 }

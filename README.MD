@@ -32,7 +32,9 @@ npm run dev
 
 Esse Backend foi bem simples de se implementar, apenas com 2 endpoints e alguns testes, tomei a liberdade
 de usar Prisma como ORM e um banco de dados leve SQLite, que foi como fizemos em aula com Keven.
+
 Além do uso do Prisma também usei o Jest com o SuperTest para testar os endpoints.
+
 Outras bibliotecas/middlewares usados e recomendados por Keven, foram:
 
 - cors, para caso futuro de implementação de acesso restrito
