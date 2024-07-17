@@ -6,7 +6,6 @@ const routes = Router();
 const agendamentoController = new AgendamentoController();
 
 //pega todos agendamentos
-//pega todos agendamentos
 routes.get("/api/agendamentos", (request, response) =>
   agendamentoController.index(request, response)
 );
