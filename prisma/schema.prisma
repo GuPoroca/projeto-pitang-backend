@@ -12,4 +12,5 @@ model Agendamento {
   name            String
   dataNascimento  DateTime
   dataAgendamento DateTime
+  statusAgendamento String @default("futuro")
 }
