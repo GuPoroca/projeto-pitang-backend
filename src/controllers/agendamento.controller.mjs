@@ -7,7 +7,7 @@ const now = new Date();
 const agendamentoSchema = z.object({
   name: z.string().min(4),
   dataNascimento: z.date().max(subDays(now, 0)),
-  dataAgendamento: z.date(),//.min(now),
+  dataAgendamento: z.date().min(now),
   statusAgendamento: z.enum(["futuro", "pendente", "realizado", "cancelado"])
 });
 
